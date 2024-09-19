@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        .c{ 
+            background-color: lightgray;
+             
+        }
+       .calculator {
+            width: 310px;
+            margin: 120px auto;
+            text-align: center;
+            background-color: rgb(26, 31, 23);
+            border-radius: 20px;
+            box-shadow: 0 0 30px hwb(44 3% 13% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+        input[type="text"] {
+            width: 85%;
+            height: 40px;
+            border-radius: 20px;
+            margin-top: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: larger;
+            box-shadow: 0  0 20px hwb(335 32% 59% / 0.959); 
+            transition: transform 0.2s, box-shadow 
+        }
+       .buttons button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            font-size: 30px;
+            margin: 5px;
+            border: double;
+            cursor: pointer;
+            box-shadow: 0 0 30px hwb(300 5% 94% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+       .buttons button:last-child {
+            width: 45%;
+        }
+       .buttons button:hover {
+            background-color: hwb(29 4% 9%);
+        }
+    </style>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById("display").value += value;
+        }
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+      
+        function calculate() {
+            try {
+                document.getElementById("display").value = eval(document.getElementById("display").value);
+            } catch (error) {
+                document.getElementById("display").value = "Error";
+            }
+        }
+    </script>
+</head>
+<body class ="c ">
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('**')">^</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('(')">(</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay(')')">)</button>
+           <button onclick="calculate()"> <button onclick="calculate()">=</button>
+        </div>
+    </div>
+</body>
+</html>

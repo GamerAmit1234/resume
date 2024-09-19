@@ -1,0 +1,40 @@
+/* styles.css */
+#game-container {
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+}
+
+#board-3d {
+    transform-style: preserve-3d;
+    transform: rotateX(60deg) rotateY(45deg);
+    transition: transform 0.5s;
+}
+
+.board-square {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin: 10px;
+}
+
+.piece {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 0.5s;
+}
+
+.dice {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    position: absolute;
+    transform: translateZ(25px);
+    transition: transform 0.5s;
+}

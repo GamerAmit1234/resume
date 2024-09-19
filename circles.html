@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .sun {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: hsl(352, 92%, 14%);
+            position: relative;
+            box-shadow: 0 0 100px hwb(352 0% 51% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+        .sun:hover{
+            
+        transform: scale(1.1); 
+        box-shadow: 0 0 1000px #f80101cc;
+        }
+        
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2000px;
+            height: 2000px;
+            border-radius: 50%;
+            background-color: #ccc;
+            transform-origin: 0 -50px;
+            animation: orbit 5s linear infinite;
+        }
+        .planet.earth{
+            
+  transform: scale(1.1); 
+  box-shadow: 0 0 10px #07e65ccc;
+        }
+        
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(50px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(50px) rotate(-360deg);
+            }
+        }
+
+        .planet.mercury {
+            width: 30px;
+            height: 30px;
+            background-color: #b0b0b0;
+            animation-duration: 3s;
+            box-shadow: 0 0 100px hwb(352 0% 51% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+       .planet.mercury:hover{
+   transform: scale(1.1);
+   box-shadow: 0 0 20px rgba(240, 49, 2, 0.8);
+       }
+        .planet.venus {
+            width: 30px;
+            height: 30px;
+            background-color: #ffd700;
+            animation-duration: 7s;
+            box-shadow: 0 0 100px hwb(352 0% 51% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+
+        .planet.earth {
+            width: 30px;
+            height: 30px;
+            background-color: #00f;
+            animation-duration: 6s;
+            box-shadow: 0 0 100px rgba(88, 73, 75, 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+
+        .planet.mars {
+            width: 30px;
+            height: 30px;
+            background-color: #ff0000;
+            animation-duration: 5s;
+            box-shadow: 0 0 100px hwb(251 5% 50% / 0.959); 
+            transition: transform 0.3s, box-shadow 
+        }
+    </style>
+</head>
+<body>
+    <div class="sun">
+        <div class="planet mercury"></div>
+        <div class="planet venus"></div>
+        <div class="planet earth"></div>
+        <div class="planet mars"></div>
+        <div class="planet mercury"></div>
+        <div class="planet venus"></div>
+        <div class="planet earth"></div>
+        <div class="planet mars"></div>
+        
+    </div>
+</body>
+</html>

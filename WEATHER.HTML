@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+.weather-dashboard {
+  width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.current-weather {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.temperature {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+}
+
+.forecast {
+  padding: 20px;
+}
+
+.forecast-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.forecast-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.radar-satellite {
+  padding: 20px;
+}
+
+.radar-satellite-container {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+    </style>
+</head>
+<body>
+    <div class="weather-dashboard">
+        <header>
+          <h2>Weather Dashboard</h2>
+        </header>
+        <div class="current-weather">
+          <h3>Current Weather</h3>
+          <div class="temperature">
+            <p id="current-temp">--</p>
+            <p id="current-unit">°C</p>
+          </div>
+          <div class="weather-icon">
+            <img id="current-icon" src="" alt="Weather Icon">
+          </div>
+        </div>
+        <div class="forecast">
+          <h3>5-Day Forecast</h3>
+          <ul id="forecast-list">
+            <!-- 5-day forecast will be displayed here -->
+          </ul>
+        </div>
+        <div class="radar-satellite">
+          <h3>Weather Radar and Satellite</h3>
+          <div id="radar-satellite-container">
+            <!-- weather radar and satellite imagery will be displayed here -->
+          </div>
+        </div>
+      </div>
+      <script>
+        // Get the current weather and forecast API endpoints
+const currentWeatherAPI = 'https://api.openweathermap.org/data/2.5/weather';
+const forecastAPI = 'https://api.openweathermap.org/data/2.5/forecast';
+
+// Function to fetch the current weather data
+function getCurrentWeather() {
+  fetch(currentWeatherAPI)
+    .then(response => response.json())
+    .then(data => {
+      const currentTemp = data.main.temp;
+      const currentIcon = data.weather[0].icon;
+      document.getElementById('current-temp').innerHTML = currentTemp;
+      document.getElementById('current-icon').src = `http://openweathermap.org/img/w/${currentIcon}.png`;
+    });
+}
+
+// Function to fetch the 5-day weather forecast data
+function getForecast() {
+  fetch(forecastAPI)
+    .then(response => response.json())
+    .then(data => {
+      const forecastList = document.getElementById('forecast-list');
+      forecastList.innerHTML = '';
+      data.list.forEach((forecast) => {
+        const forecastHTML = `<li>
+          <p>${forecast.dt_txt}</p>
+          <p>Temp: ${forecast.main.temp}°C</p>
+          <p>Weather: ${forecast.weather[0].description}</p>
+        </li>`;
+        forecastList.innerHTML += forecastHTML;
+      });
+    });
+}
+
+// Function to fetch the weather radar and satellite imagery data
+function getRadarSatellite() {
+  fetch('https://api.weather.gov/radar/image')
+    .then(response => response.json())
+    .then(data => {
+      const radarSatelliteContainer = document.getElementById('radar-satellite-container');
+      radarSatelliteContainer.innerHTML = '';
+      const radarSatelliteHTML = `<img src="${data.image}" alt="Weather Radar and Satellite">`;
+      radarSatelliteContainer.innerHTML = radarSatelliteHTML;
+    });
+}
+
+// Call the functions to fetch the data
+getCurrentWeather();
+getForecast();
+getRadarSatellite();
+      </script>
+    
+</body>
+</html>
